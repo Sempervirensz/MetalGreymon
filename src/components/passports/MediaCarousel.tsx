@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef, useEffect, useCallback } from 'react';
 
 export type MediaItem = {
   id: string;
@@ -60,6 +60,16 @@ const THUMBNAIL_STYLES = {
   },
 } as const;
 
+// Preload video helper
+function preloadVideo(src: string): HTMLVideoElement {
+  const video = document.createElement('video');
+  video.src = src;
+  video.preload = 'auto';
+  video.muted = true;
+  video.playsInline = true;
+  return video;
+}
+
 export default function MediaCarousel({
   items,
   showThumbnails = true,
@@ -70,17 +80,49 @@ export default function MediaCarousel({
 }: MediaCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const safeItems = useMemo(() => items ?? [], [items]);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const preloadedVideos = useRef<Map<string, HTMLVideoElement>>(new Map());
+
+  // Preload next video when active index changes
+  useEffect(() => {
+    if (!safeItems.length) return;
+    
+    // Preload next 2 videos
+    const indicesToPreload = [
+      (activeIndex + 1) % safeItems.length,
+      (activeIndex + 2) % safeItems.length,
+    ];
+    
+    indicesToPreload.forEach(idx => {
+      const item = safeItems[idx];
+      if (item?.type === 'video' && !preloadedVideos.current.has(item.src)) {
+        const preloaded = preloadVideo(item.src);
+        preloadedVideos.current.set(item.src, preloaded);
+      }
+    });
+  }, [activeIndex, safeItems]);
+
+  // Auto-play video when it becomes active
+  useEffect(() => {
+    const current = safeItems[activeIndex];
+    if (current?.type === 'video' && videoRef.current) {
+      // Reset and play
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {
+        // Autoplay blocked - that's okay, video will show poster
+      });
+    }
+  }, [activeIndex, safeItems]);
+
+  const goTo = useCallback((next: number) => {
+    setActiveIndex((next + safeItems.length) % safeItems.length);
+  }, [safeItems.length]);
 
   if (!safeItems.length) {
     return null;
   }
 
   const current = safeItems[Math.min(activeIndex, safeItems.length - 1)];
-
-  const goTo = (next: number) => {
-    setActiveIndex((next + safeItems.length) % safeItems.length);
-  };
-
   const styles = VARIANT_STYLES[variant];
   const thumbnailStyles = THUMBNAIL_STYLES[thumbnailSize] ?? THUMBNAIL_STYLES.default;
 
@@ -96,15 +138,23 @@ export default function MediaCarousel({
           />
         ) : (
           <video
+            ref={videoRef}
             key={current.id}
             src={current.src}
             poster={current.poster}
-            controls
-            playsInline
-            loop
             muted
             autoPlay
+            playsInline
+            loop
+            preload="auto"
+            controls={false}
+            disablePictureInPicture
             className="h-full w-full object-contain"
+            onCanPlay={(e) => {
+              // Ensure video plays as soon as it can
+              const video = e.currentTarget;
+              video.play().catch(() => {});
+            }}
           />
         )}
 
@@ -162,17 +212,19 @@ export default function MediaCarousel({
                   <img src={item.src} alt={item.alt} className="h-full w-full object-contain" />
                 ) : (
                   <>
-                    <video
-                      src={item.src}
-                      poster={item.poster}
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      className="h-full w-full object-contain"
-                    />
+                    {item.poster ? (
+                      <img src={item.poster} alt={item.alt} className="h-full w-full object-contain" />
+                    ) : (
+                      <video
+                        src={item.src}
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="h-full w-full object-contain"
+                      />
+                    )}
                     <span className="absolute inset-0 flex items-center justify-center text-white">
-                      <span className="rounded-full bg-black/60 px-2 py-1 text-[11px]">Video</span>
+                      <span className="rounded-full bg-black/60 px-2 py-1 text-[11px]">▶</span>
                     </span>
                   </>
                 )}
