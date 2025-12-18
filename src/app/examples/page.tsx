@@ -25,7 +25,7 @@ const variants = [
     category: 'Wine & Spirits',
     thumbnail: '🍷',
     color: 'from-red-900/30 to-purple-900/40',
-    image: '/images/sprinklestar/cinematic_ceramic_vase_in_natural_light.png',
+    image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80',
     description: 'An elegant wine passport featuring tasting notes, vineyard provenance, and winemaker heritage.',
     features: ['Tasting profile', 'Vineyard map', 'Blockchain verified'],
   },

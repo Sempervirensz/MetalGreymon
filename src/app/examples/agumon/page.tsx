@@ -4,6 +4,17 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Fingerprint, Shield, Copy, CheckCircle, Box, ArrowLeft } from 'lucide-react';
+import dynamic from "next/dynamic";
+
+const ProvenanceMap = dynamic(() => import("@/components/passports/ProvenanceMap"), { ssr: false });
+
+const nikeSteps = [
+  { name: "Oregon Design HQ", role: "Design", city: "Beaverton", country: "USA", lat: 45.491, lon: -122.803 },
+  { name: "Leather Supplier", role: "Materials", city: "Arzignano", country: "Italy", lat: 45.521, lon: 11.334 },
+  { name: "Nike Factory", role: "Manufacturing", city: "Ho Chi Minh", country: "Vietnam", lat: 10.762, lon: 106.660 },
+  { name: "Quality Control", role: "Inspection", city: "Memphis", country: "USA", lat: 35.149, lon: -90.048 },
+  { name: "NYC Flagship", role: "Retail", city: "New York", country: "USA", lat: 40.7128, lon: -74.006 },
+];
 
 // Scramble hook
 const CHARS = "ABCDEF0123456789XX$$##@@//";

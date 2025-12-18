@@ -119,7 +119,12 @@ export default function ProvenanceMap({
 }: ProvenanceMapProps) {
   // Use steps if provided, otherwise use locations, otherwise use defaults
   const resolvedLocations = steps ? stepsToLocations(steps) : (locations || DEFAULT_LOCATIONS);
-  const [activeLocation, setActiveLocation] = useState<Location>(resolvedLocations[0]);
+  const [activeLocation, setActiveLocation] = useState<Location>(resolvedLocations[0] || DEFAULT_LOCATIONS[0]);
+  
+  // Guard against invalid coordinates
+  if (!activeLocation || !activeLocation.coords || isNaN(activeLocation.coords[0]) || isNaN(activeLocation.coords[1])) {
+    return null;
+  }
 
   return (
     <div className="w-full h-[600px] flex flex-col md:flex-row bg-stone-50 border-y border-stone-200">

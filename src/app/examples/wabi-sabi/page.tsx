@@ -4,6 +4,17 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { MapPin, Fingerprint, Calendar, ShieldCheck, ArrowDown } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const ProvenanceMap = dynamic(() => import("@/components/passports/ProvenanceMap"), { ssr: false });
+
+const ceramicsSteps = [
+  { name: "Shigaraki Clay Quarry", role: "Raw Materials", city: "Shigaraki", country: "Japan", lat: 34.932, lon: 136.045 },
+  { name: "Tanaka Studio", role: "Forming", city: "Kyoto", country: "Japan", lat: 35.011, lon: 135.768 },
+  { name: "Noborigama Kiln", role: "Firing", city: "Shigaraki", country: "Japan", lat: 34.935, lon: 136.050 },
+  { name: "Artisan Workshop", role: "Finishing", city: "Kyoto", country: "Japan", lat: 35.003, lon: 135.769 },
+  { name: "Gallery", role: "Exhibition", city: "San Francisco", country: "USA", lat: 37.7749, lon: -122.4194 },
+];
 
 // Using placeholder images
 const heroImage = "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1920&q=80";
@@ -93,6 +104,13 @@ export default function WabiSabiExperience() {
           <ArrowDown size={24} strokeWidth={1} />
         </motion.div>
       </div>
+
+      {/* Provenance Map */}
+      <ProvenanceMap 
+        steps={ceramicsSteps}
+        title="Vessel Journey" 
+        primaryColor="#a87963"
+      />
 
       {/* Manifesto */}
       <Section className="items-center text-center max-w-3xl mx-auto">

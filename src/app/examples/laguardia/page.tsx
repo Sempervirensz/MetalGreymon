@@ -4,8 +4,19 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Coffee, Sun, Leaf, Scale } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
-const heroImage = "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1920&q=80";
+const ProvenanceMap = dynamic(() => import("@/components/passports/ProvenanceMap"), { ssr: false });
+
+const coffeeSteps = [
+  { name: "Selva Highland Farm", role: "Cultivation", city: "Chiapas", country: "Mexico", lat: 15.768, lon: -92.636 },
+  { name: "Union de la Selva", role: "Harvest & Drying", city: "San Cristóbal", country: "Mexico", lat: 16.737, lon: -92.638 },
+  { name: "Oaxaca Micro-Roastery", role: "Roasting", city: "Oaxaca", country: "Mexico", lat: 17.073, lon: -96.726 },
+  { name: "Fairtrade Warehouse", role: "Quality Control", city: "Mexico City", country: "Mexico", lat: 19.432, lon: -99.133 },
+  { name: "Direct Trade Partner", role: "Distribution", city: "San Francisco", country: "USA", lat: 37.7749, lon: -122.4194 },
+];
+
+const heroImage = "/images/selva/heropagecoffee.png";
 const farmerImage = "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=1920&q=80";
 const beanTexture = "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1920&q=80";
 const bagImage = "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1920&q=80";
@@ -70,10 +81,19 @@ export default function CoffeeExperience() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-6xl md:text-9xl font-bold text-white mb-8 tracking-tighter drop-shadow-lg leading-[0.9]"
+            className="text-6xl md:text-9xl font-bold text-white mb-4 tracking-tighter drop-shadow-lg leading-[0.9]"
           >
-            Jungle <br/> Grown.
+            Sunsera <br/> Coffee
           </motion.h1>
+          
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-white/70 text-sm mb-8"
+          >
+            12 oz (340g)
+          </motion.p>
           
           <motion.p 
             initial={{ opacity: 0 }}
@@ -81,7 +101,7 @@ export default function CoffeeExperience() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-white/90 max-w-lg mx-auto font-light leading-relaxed border-t border-white/30 pt-8"
           >
-            Wild-grown in the shade of the rainforest canopy. Hand-picked by indigenous farmers who own the land.
+            Wild-grown in the shade of the rainforest
           </motion.p>
         </div>
 
@@ -94,6 +114,13 @@ export default function CoffeeExperience() {
           <ArrowDown className="w-6 h-6" strokeWidth={1.5} />
         </motion.div>
       </header>
+
+      {/* Provenance Map */}
+      <ProvenanceMap 
+        steps={coffeeSteps}
+        title="Bean Journey" 
+        primaryColor="#d97706"
+      />
 
       {/* Passport Data */}
       <section className="py-24 px-6 max-w-screen-xl mx-auto">

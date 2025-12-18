@@ -18,7 +18,7 @@ const coffeeSteps = [
 ];
 
 // Assets
-const heroImage = "/images/selva/coffee_drying_beds_in_mexican_jungle.png";
+const heroImage = "/images/selva/heropagecoffee.png";
 const farmerImage = "/images/selva/coffee_farmer_hand_sorting_beans.png";
 const beanTexture = "/images/selva/texture_of_roasted_coffee_beans.png";
 const bagImage = "/images/selva/paper_coffee_bag_in_nature.png";
@@ -94,10 +94,18 @@ export default function SelvaExperience() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-6xl md:text-9xl font-bold text-white mb-8 tracking-tighter drop-shadow-lg leading-[0.9]"
+            className="text-6xl md:text-9xl font-bold text-white mb-4 tracking-tighter drop-shadow-lg leading-[0.9]"
           >
-            Jungle <br/> Grown.
+            Sunsera <br/> Coffee
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-white/70 text-sm"
+          >
+            12 oz (340 g)
+          </motion.p>
           
           <motion.p 
             initial={{ opacity: 0 }}
@@ -105,7 +113,7 @@ export default function SelvaExperience() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-white/90 max-w-lg mx-auto font-light leading-relaxed border-t border-white/30 pt-8"
           >
-            Wild-grown in the shade of the rainforest canopy. Hand-picked by indigenous farmers who own the land. Pure, unfiltered energy from the earth.
+            Wild-grown in the shade of the rainforest
           </motion.p>
         </div>
 

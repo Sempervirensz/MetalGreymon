@@ -1,8 +1,10 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/examples/page": "app/examples/page.js",
-  "/examples/laguardia/page": "app/examples/laguardia/page.js",
+  "/examples/passport-demo/page": "app/examples/passport-demo/page.js",
   "/examples/sprinkle-star/page": "app/examples/sprinkle-star/page.js",
+  "/examples/laguardia/page": "app/examples/laguardia/page.js",
+  "/examples/agumon/page": "app/examples/agumon/page.js",
   "/page": "app/page.js",
-  "/examples/passport-demo/page": "app/examples/passport-demo/page.js"
+  "/(auth)/signup/page": "app/(auth)/signup/page.js"
 }

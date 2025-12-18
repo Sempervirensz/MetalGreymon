@@ -4,6 +4,17 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { MapPin, Fingerprint, Calendar, ShieldCheck, ArrowDown } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const ProvenanceMap = dynamic(() => import("@/components/passports/ProvenanceMap"), { ssr: false });
+
+const wineSteps = [
+  { name: "Grand Cru Vineyard", role: "Cultivation", city: "Napa", country: "USA", lat: 38.297, lon: -122.287 },
+  { name: "Étoile Winery", role: "Fermentation", city: "St. Helena", country: "USA", lat: 38.505, lon: -122.469 },
+  { name: "French Cooperage", role: "Oak Barrels", city: "Bordeaux", country: "France", lat: 44.837, lon: -0.579 },
+  { name: "Estate Cellars", role: "Aging", city: "Napa", country: "USA", lat: 38.297, lon: -122.287 },
+  { name: "Private Collection", role: "Distribution", city: "San Francisco", country: "USA", lat: 37.7749, lon: -122.4194 },
+];
 
 const heroImage = "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1920&q=80";
 const makerImage = "https://images.unsplash.com/photo-1560493676-04071c5f467b?w=1920&q=80";
@@ -92,6 +103,13 @@ export default function WineExperience() {
           <ArrowDown size={24} strokeWidth={1} />
         </motion.div>
       </div>
+
+      {/* Provenance Map */}
+      <ProvenanceMap 
+        steps={wineSteps}
+        title="Wine Journey" 
+        primaryColor="#9f1239"
+      />
 
       {/* Manifesto */}
       <Section className="items-center text-center max-w-3xl mx-auto">
