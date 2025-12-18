@@ -1,0 +1,7 @@
+{
+  "/examples/passport-demo/page": "app/examples/passport-demo/page.js",
+  "/examples/page": "app/examples/page.js",
+  "/examples/sprinkle-star/page": "app/examples/sprinkle-star/page.js",
+  "/examples/laguardia/page": "app/examples/laguardia/page.js",
+  "/page": "app/page.js"
+}
