@@ -88,10 +88,10 @@ export default function PlansPage() {
               <div
                 key={key}
                 className={`bg-white rounded-3xl shadow-sm p-10 hover:border-gray-200 transition-all ${
-                  plan.popular ? 'border-2 border-blue-600 shadow-lg relative' : 'border border-gray-100/50'
+                  'popular' in plan && plan.popular ? 'border-2 border-blue-600 shadow-lg relative' : 'border border-gray-100/50'
                 }`}
               >
-                {plan.popular && (
+                {'popular' in plan && plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <span className="bg-blue-600 text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full">
                       Most popular
