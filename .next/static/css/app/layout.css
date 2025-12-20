@@ -662,6 +662,9 @@ video {
 .top-6 {
   top: 1.5rem;
 }
+.bottom-20 {
+  bottom: 5rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -685,6 +688,12 @@ video {
 }
 .z-\[400\] {
   z-index: 400;
+}
+.z-\[9998\] {
+  z-index: 9998;
+}
+.z-\[9999\] {
+  z-index: 9999;
 }
 .order-1 {
   order: 1;
@@ -888,6 +897,12 @@ video {
 }
 .max-h-full {
   max-height: 100%;
+}
+.max-h-\[70vh\] {
+  max-height: 70vh;
+}
+.max-h-\[calc\(70vh-80px\)\] {
+  max-height: calc(70vh - 80px);
 }
 .min-h-screen {
   min-height: 100vh;

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import DevMenu from "@/components/dev/DevMenu";
 
 export const metadata: Metadata = {
   title: "WorldPulse - Digital Product Passports",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <DevMenu />
+      </body>
     </html>
   );
 }
