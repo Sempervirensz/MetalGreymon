@@ -1,1 +1,8 @@
-{}
+{
+  "/page": "app/page.js",
+  "/examples/caplin-coffee/page": "app/examples/caplin-coffee/page.js",
+  "/examples/page": "app/examples/page.js",
+  "/dashboard/content/page": "app/dashboard/content/page.js",
+  "/examples/laguardia/page": "app/examples/laguardia/page.js",
+  "/examples/wabi-sabi/page": "app/examples/wabi-sabi/page.js"
+}

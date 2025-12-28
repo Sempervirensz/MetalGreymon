@@ -4,12 +4,15 @@ import type { NextRequest } from "next/server";
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
+  // In development, bypass authentication
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  
   // Check for session cookie (simulated auth)
   const isLoggedIn = request.cookies.get("session")?.value;
   
   // Protected dashboard routes
   if (pathname.startsWith("/dashboard")) {
-    if (!isLoggedIn) {
+    if (!isDevelopment && !isLoggedIn) {
       const loginUrl = new URL("/login", request.url);
       loginUrl.searchParams.set("next", pathname);
       return NextResponse.redirect(loginUrl);

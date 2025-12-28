@@ -10,6 +10,7 @@ const demoPassports = [
   { id: 'wabi-sabi', name: 'Artisan Ceramics', emoji: '🏺', subtitle: 'The Vessel — Kyoto' },
   { id: 'sprinkle-star', name: 'Fine Wine', emoji: '🍷', subtitle: 'Reserve Noir — Napa' },
   { id: 'laguardia', name: 'Specialty Coffee', emoji: '☕', subtitle: 'Jungle Grown — Chiapas' },
+  { id: 'caplin-coffee', name: 'Caplin Coffee', emoji: '☕', subtitle: 'Nayarit, Mexico' },
 ];
 
 const brandImages = [

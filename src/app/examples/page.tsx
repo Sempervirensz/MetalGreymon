@@ -40,6 +40,18 @@ const variants = [
     description: 'Bold, magazine-style layout showcasing origin story, fair trade credentials, and flavor profiles.',
     features: ['Crop passport', 'Fairtrade certified', 'Tasting notes'],
   },
+  {
+    id: 'caplin-coffee',
+    name: 'Caplin Coffee',
+    subtitle: 'Nayarit, Mexico',
+    category: 'Food & Beverage',
+    thumbnail: '☕',
+    color: 'from-amber-800/30 to-orange-700/40',
+    image: '/images/selva/heropagecoffee.png',
+    description: 'Gallery-style experience featuring CAPULIN sun-dried coffee with provenance mapping and community impact.',
+    features: ['CAPULIN process', 'Jungle shade grown', 'Water-free processing'],
+    isOriginal: true,
+  },
   // New variants from TokyoDrift - use original passport-demo
   {
     id: 'food',

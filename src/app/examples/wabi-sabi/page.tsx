@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { MapPin, Fingerprint, Calendar, ShieldCheck, ArrowDown } from "lucide-react";
+import { MapPin, Fingerprint, Calendar, ShieldCheck, ArrowDown, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -225,12 +225,21 @@ export default function WabiSabiExperience() {
       <footer className="py-24 text-center bg-[#1a1a1a] text-white">
         <div className="font-serif text-2xl tracking-widest uppercase mb-4">Earthen</div>
         <p className="text-white/40 text-xs tracking-widest mb-8">© 2024 Earthen Ceramics. All rights reserved.</p>
-        <Link
-          href="/signup"
-          className="inline-block px-8 py-4 bg-[#E2ECE9] text-[#032422] rounded-full font-bold hover:bg-white transition-colors"
-        >
-          Create Your Own Passport
-        </Link>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            href="/analytics/wabi-sabi"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#032422] rounded-full font-bold hover:bg-[#E2ECE9] transition-colors"
+          >
+            <BarChart3 className="w-4 h-4" />
+            View Analytics
+          </Link>
+          <Link
+            href="/signup"
+            className="inline-block px-8 py-4 bg-[#E2ECE9] text-[#032422] rounded-full font-bold hover:bg-white transition-colors"
+          >
+            Create Your Own Passport
+          </Link>
+        </div>
       </footer>
     </div>
   );

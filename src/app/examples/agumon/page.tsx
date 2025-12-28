@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { Fingerprint, Shield, Copy, CheckCircle, Box, ArrowLeft } from 'lucide-react';
+import { Fingerprint, Shield, Copy, CheckCircle, Box, ArrowLeft, BarChart3 } from 'lucide-react';
 import dynamic from "next/dynamic";
 
 const ProvenanceMap = dynamic(() => import("@/components/passports/ProvenanceMap"), { ssr: false });
@@ -460,9 +460,16 @@ export default function AgumonPage() {
         
         <footer className="py-12 text-center border-t border-white/5 relative z-10 bg-black">
            <div className="text-2xl mb-4 text-white/20 font-black">NIKE</div>
-           <div className="font-mono text-[10px] text-white/20 uppercase tracking-widest">
+           <div className="font-mono text-[10px] text-white/20 uppercase tracking-widest mb-6">
              Verified by WorldPulse • Product ID: WP-FTWR-AF1-0001
            </div>
+           <Link
+             href="/analytics/agumon"
+             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black hover:bg-gray-200 transition-colors font-medium text-sm"
+           >
+             <BarChart3 className="w-4 h-4" />
+             View Analytics
+           </Link>
         </footer>
       </motion.main>
     </div>
